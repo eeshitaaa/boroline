@@ -20,11 +20,21 @@
     "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/Superba_Aqua_202bf3c5-0f2a-4cb0-b439-05bbce2c4e2b.jpg?v=1746695162",
     "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/6_28c32df8-7543-4111-9530-41e7c1705020.jpg?v=1746691993"
   ];
+  const lastBottleKey = "paradyes-loader-last-index";
 
   function setRandomBottle() {
     if (!loaderBottle) return;
-    const randomIndex = Math.floor(Math.random() * bottleImages.length);
+    if (bottleImages.length === 0) return;
+
+    const lastIndex = Number(localStorage.getItem(lastBottleKey));
+    let randomIndex = Math.floor(Math.random() * bottleImages.length);
+
+    if (bottleImages.length > 1 && Number.isInteger(lastIndex) && randomIndex === lastIndex) {
+      randomIndex = (randomIndex + 1) % bottleImages.length;
+    }
+
     loaderBottle.src = bottleImages[randomIndex];
+    localStorage.setItem(lastBottleKey, String(randomIndex));
   }
 
   function hideLoader() {
