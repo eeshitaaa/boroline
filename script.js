@@ -2,7 +2,7 @@
   const ENDPOINT =
     "https://www.birdsofparadyes.com/collections/semi-permanent-hair-color/products.json?limit=250";
 
-  const grid = document.getElementById("grid");
+  const grid = document.getElementById("shop-grid");
   const cardTemplate = document.getElementById("card-template");
   const count = document.getElementById("count");
   const search = document.getElementById("search");

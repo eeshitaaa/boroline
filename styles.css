@@ -1,9 +1,9 @@
 :root {
-  --bg: #f8f8f8;
+  --bg: #f6f1eb;
   --surface: #ffffff;
   --ink: #1d1d1d;
   --muted: #5f5f5f;
-  --line: #e7e7e7;
+  --line: #e7ddd3;
   --accent: #121212;
   --sale: #d63a2f;
 }
@@ -16,7 +16,10 @@ body {
   margin: 0;
   font-family: "DM Sans", Arial, sans-serif;
   color: var(--ink);
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(233, 196, 154, 0.24), transparent 28%),
+    radial-gradient(circle at 88% 12%, rgba(245, 205, 218, 0.24), transparent 30%),
+    var(--bg);
 }
 
 .refresh-loader {
@@ -120,6 +123,11 @@ img {
 .collection-hero {
   position: relative;
   background: #ddd;
+  width: min(1260px, 96vw);
+  margin: 1rem auto 0;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(32, 21, 14, 0.14);
 }
 
 .collection-hero img {
@@ -155,6 +163,83 @@ img {
 .hero-overlay p {
   margin: 0.55rem 0 0;
   max-width: 60ch;
+}
+
+.hero-cta {
+  margin-top: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  min-height: 38px;
+  padding: 0.4rem 0.9rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+.glow-strip {
+  margin-top: 0.9rem;
+  padding: 0.7rem 1rem;
+  text-align: center;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.05rem;
+  color: #5c2f42;
+  background: linear-gradient(90deg, #f8e6d6, #f6dfea, #f8e6d6);
+  border-top: 1px solid #ecd7c3;
+  border-bottom: 1px solid #ecd7c3;
+}
+
+.glow-strip p {
+  margin: 0;
+}
+
+.inspo-block {
+  padding-top: 1rem;
+}
+
+.category-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.category-pills span {
+  border: 1px solid #e8dacb;
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  background: #fffdfb;
+  color: #3b3128;
+  font-size: 0.83rem;
+  font-weight: 600;
+}
+
+.benefits {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.benefits article {
+  border: 1px solid #eadfd3;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  padding: 0.75rem;
+}
+
+.benefits h3 {
+  margin: 0 0 0.2rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1rem;
+}
+
+.benefits p {
+  margin: 0;
+  font-size: 0.83rem;
+  color: #67594d;
 }
 
 .collection-content {
@@ -198,7 +283,7 @@ input {
 
 .prep-note {
   border: 1px solid #ecd9b8;
-  background: #fff5e4;
+  background: #fff7ea;
   color: #5b3d12;
   border-radius: 8px;
   padding: 0.72rem 0.8rem;
@@ -215,6 +300,9 @@ input {
 .card {
   background: #fff;
   border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.07);
 }
 
 .card-media-link {
@@ -279,6 +367,10 @@ input {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .benefits {
+    grid-template-columns: 1fr;
+  }
+
   .toolbar {
     flex-direction: column;
     align-items: flex-start;
@@ -307,6 +399,12 @@ input {
 
   .hero-overlay {
     bottom: 8%;
+  }
+
+  .collection-hero {
+    width: 100%;
+    border-radius: 0;
+    margin-top: 0;
   }
 }
 
