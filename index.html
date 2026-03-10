@@ -67,13 +67,13 @@
         />
         <div class="hero-content container">
           <p class="eyebrow">Boroline Collection</p>
-          <h1>Dermato-inspired daily care for healthy skin and lips</h1>
+          <h1>All Boroline Products for complete personal and skin care</h1>
           <p>
-            Explore trusted Boroline classics and everyday essentials for
-            moisturising, soothing, and hygiene care routines.
+            Discover everything Boroline has for you and your family. Trusted
+            products that have kept families healthy and happy for generations.
           </p>
           <div class="btn-row">
-            <a class="btn" href="#shop">Shop essentials</a>
+            <a class="btn" href="#shop">Explore collection</a>
             <a
               class="btn btn-ghost"
               href="https://shop.boroline.com/collections/all"
@@ -92,11 +92,11 @@
 
       <section class="category-nav-wrap">
         <nav class="container nav-links" aria-label="Main navigation">
-          <a href="#shop">All Products</a>
-          <a href="#shop">Cream</a>
-          <a href="#shop">Lip Balm</a>
-          <a href="#shop">Soap</a>
-          <a href="#shop">Hygiene</a>
+          <button class="nav-filter is-on" data-chip="all" type="button">All Products</button>
+          <button class="nav-filter" data-chip="Cream" type="button">Cream</button>
+          <button class="nav-filter" data-chip="Lip Balm" type="button">Lip Balm</button>
+          <button class="nav-filter" data-chip="Liquid" type="button">Liquid</button>
+          <button class="nav-filter" data-chip="Soap" type="button">Soap</button>
         </nav>
       </section>
 
@@ -123,13 +123,6 @@
           </div>
 
           <div class="shop-toolbar">
-            <div class="chips" role="group" aria-label="Product categories">
-              <button class="chip is-on" data-chip="all" type="button">All</button>
-              <button class="chip" data-chip="Cream" type="button">Cream</button>
-              <button class="chip" data-chip="Lip Balm" type="button">Lip Balm</button>
-              <button class="chip" data-chip="Liquid" type="button">Liquid</button>
-              <button class="chip" data-chip="Soap" type="button">Soap</button>
-            </div>
             <input id="search" type="search" placeholder="Search products" aria-label="Search products" />
           </div>
 
@@ -160,6 +153,33 @@
           </article>
         </div>
       </section>
+
+      <section class="section final-cta">
+        <div class="container cta-panel">
+          <p class="eyebrow">Boroline Shop</p>
+          <h2>Trusted products for generations of Indian families</h2>
+          <p>
+            Shop the official Boroline collection for skin care, lip care and
+            hygiene essentials.
+          </p>
+          <div class="btn-row">
+            <a
+              class="btn"
+              href="https://shop.boroline.com/collections/all"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Shop official collection</a
+            >
+            <a
+              class="btn btn-alt"
+              href="https://shop.boroline.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Visit boroline shop</a
+            >
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
@@ -184,6 +204,7 @@
             <span class="price"></span>
             <span class="compare-price is-hidden"></span>
           </p>
+          <a class="card-cta" target="_blank" rel="noopener noreferrer">View product</a>
         </div>
       </article>
     </template>

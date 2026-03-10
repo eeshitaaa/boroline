@@ -6,6 +6,7 @@
   const count = document.getElementById("count");
   const search = document.getElementById("search");
   const chips = Array.from(document.querySelectorAll(".chip"));
+  const navFilters = Array.from(document.querySelectorAll(".nav-filter"));
   const empty = document.getElementById("empty");
   const loadMoreBtn = document.getElementById("load-more");
   const refreshLoader = document.getElementById("refresh-loader");
@@ -94,6 +95,7 @@
       const type = node.querySelector(".card-type");
       const price = node.querySelector(".price");
       const compare = node.querySelector(".compare-price");
+      const cardCta = node.querySelector(".card-cta");
 
       const productUrl = `https://shop.boroline.com/products/${product.handle}`;
       const imageUrl = product.images?.[0]?.src || "";
@@ -102,6 +104,7 @@
       link.href = productUrl;
       image.src = imageUrl;
       image.alt = product.title;
+      cardCta.href = productUrl;
       title.textContent = product.title;
       type.textContent = product.product_type || "Boroline Product";
       price.textContent = formatMoney(primaryVariant.price);
@@ -158,7 +161,19 @@
       chips.forEach((item) => item.classList.remove("is-on"));
       chip.classList.add("is-on");
       activeChip = chip.dataset.chip || "all";
+      navFilters.forEach((item) => item.classList.toggle("is-on", (item.dataset.chip || "all") === activeChip));
       visibleCount = pageSize;
+      renderProducts();
+    });
+  });
+
+  navFilters.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      activeChip = btn.dataset.chip || "all";
+      navFilters.forEach((item) => item.classList.toggle("is-on", item === btn));
+      chips.forEach((chip) => chip.classList.toggle("is-on", (chip.dataset.chip || "all") === activeChip));
+      visibleCount = pageSize;
+      document.getElementById("shop")?.scrollIntoView({ behavior: "smooth", block: "start" });
       renderProducts();
     });
   });
