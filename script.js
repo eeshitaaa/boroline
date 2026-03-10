@@ -14,11 +14,11 @@
 
   let products = [];
   const bottleImages = [
-    "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/RR_Baddie.jpg?v=1772432523",
-    "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/BP_Baddie.jpg?v=1772432542",
-    "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/EB_Baddie.jpg?v=1772432505",
-    "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/HB_Baddie.jpg?v=1772432128",
-    "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/VB_Baddie.jpg?v=1772432436"
+    "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/Jars_Bleach_Listing_2024_6ab3a533-eba2-4cbd-9386-619d45834673.jpg?v=1768276802",
+    "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/Jars_Bleach_Listing_2024.jpg?v=1746695231",
+    "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/Sapphire_Navy_24acb683-790f-4438-8dcc-73f2533f284b.jpg?v=1746695493",
+    "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/Superba_Aqua_202bf3c5-0f2a-4cb0-b439-05bbce2c4e2b.jpg?v=1746695162",
+    "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/6_28c32df8-7543-4111-9530-41e7c1705020.jpg?v=1746691993"
   ];
 
   function setRandomBottle() {
