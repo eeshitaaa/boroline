@@ -21,12 +21,45 @@
     "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/6_28c32df8-7543-4111-9530-41e7c1705020.jpg?v=1746691993"
   ];
   const lastBottleKey = "paradyes-loader-last-index";
+  const fallbackProducts = [
+    {
+      title: "Ruby Wine Semi-Permanent Hair Color",
+      handle: "ruby-wine-semi-permanent-hair-color",
+      images: [
+        { src: "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/2_1910163a-51c5-420e-a199-35fe6c50f144.jpg?v=1746692031" }
+      ],
+      product_type: "Semi-Permanent Hair Color",
+      variants: [{ price: "599.00", compare_at_price: null }]
+    },
+    {
+      title: "Sapphire Navy Semi-Permanent Hair Color",
+      handle: "sapphire-navy-semi-permanent-hair-color",
+      images: [
+        { src: "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/Sapphire_Navy_24acb683-790f-4438-8dcc-73f2533f284b.jpg?v=1746695493" }
+      ],
+      product_type: "Semi-Permanent Hair Color",
+      variants: [{ price: "599.00", compare_at_price: null }]
+    },
+    {
+      title: "Amethyst Plum Semi-Permanent Hair Color",
+      handle: "amethyst-plum-semi-permanent-hair-color",
+      images: [
+        { src: "https://cdn.shopify.com/s/files/1/0533/6006/6741/files/100_21f07912-74fc-46d5-ae1d-ae9a4860110f.jpg?v=1746691774" }
+      ],
+      product_type: "Semi-Permanent Hair Color",
+      variants: [{ price: "599.00", compare_at_price: null }]
+    }
+  ];
 
   function setRandomBottle() {
     if (!loaderBottle) return;
     if (bottleImages.length === 0) return;
-
-    const lastIndex = Number(localStorage.getItem(lastBottleKey));
+    let lastIndex = NaN;
+    try {
+      lastIndex = Number(localStorage.getItem(lastBottleKey));
+    } catch (error) {
+      lastIndex = NaN;
+    }
     let randomIndex = Math.floor(Math.random() * bottleImages.length);
 
     if (bottleImages.length > 1 && Number.isInteger(lastIndex) && randomIndex === lastIndex) {
@@ -34,7 +67,11 @@
     }
 
     loaderBottle.src = bottleImages[randomIndex];
-    localStorage.setItem(lastBottleKey, String(randomIndex));
+    try {
+      localStorage.setItem(lastBottleKey, String(randomIndex));
+    } catch (error) {
+      // Ignore storage failures and continue loading.
+    }
   }
 
   function hideLoader() {
@@ -129,7 +166,12 @@
 
   async function loadProducts() {
     try {
-      const response = await fetch(ENDPOINT);
+      const response = await Promise.race([
+        fetch(ENDPOINT),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error("Request timed out")), 7000)
+        )
+      ]);
       if (!response.ok) throw new Error("Failed to load products");
       const payload = await response.json();
       products = (payload.products || []).map((item) => ({
@@ -140,12 +182,15 @@
         price: item.variants?.[0]?.price,
         variants: item.variants || []
       }));
+      if (products.length === 0) {
+        products = fallbackProducts;
+      }
       renderProducts();
       setTimeout(hideLoader, 700);
     } catch (error) {
-      count.textContent = "Unable to load products right now";
-      empty.textContent = "Please refresh in a moment.";
-      empty.classList.remove("is-hidden");
+      products = fallbackProducts;
+      renderProducts();
+      count.textContent = `${products.length} products (fallback)`;
       setTimeout(hideLoader, 700);
     }
   }
@@ -156,5 +201,7 @@
   });
 
   setRandomBottle();
+  // Failsafe: never keep overlay forever if any runtime error happens.
+  setTimeout(hideLoader, 3500);
   loadProducts();
 })();
